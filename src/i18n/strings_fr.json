@@ -1,0 +1,23 @@
+{
+  "title": "Champ électrique de rêve",
+  "screens": {
+    "electricFieldOfDreams": "Champ électrique de rêve"
+  },
+  "particles": {
+    "title": "Particules",
+    "add": "Ajouter",
+    "remove": "Retirer",
+    "charge": "Charge",
+    "positive": "Positive",
+    "negative": "Négative",
+    "mass": "Masse",
+    "light": "Légère",
+    "heavy": "Lourde"
+  },
+  "externalField": {
+    "title": "Champ externe"
+  },
+  "fieldDensity": {
+    "title": "Densité du champ"
+  }
+}

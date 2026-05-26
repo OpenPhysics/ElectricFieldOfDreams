@@ -1,0 +1,23 @@
+{
+  "title": "Electric Field of Dreams",
+  "screens": {
+    "electricFieldOfDreams": "Electric Field of Dreams"
+  },
+  "particles": {
+    "title": "Particles",
+    "add": "Add",
+    "remove": "Remove",
+    "charge": "Charge",
+    "positive": "Positive",
+    "negative": "Negative",
+    "mass": "Mass",
+    "light": "Light",
+    "heavy": "Heavy"
+  },
+  "externalField": {
+    "title": "External Field"
+  },
+  "fieldDensity": {
+    "title": "Field Density"
+  }
+}
