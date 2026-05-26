@@ -4,7 +4,7 @@ A single-screen [SceneryStack](https://scenerystack.org/) simulation. Place char
 particles in a box and watch them interact through Coulomb's law and an adjustable
 uniform external field, with the resulting electric field visualized as a grid of arrows.
 
-This is a TypeScript / SceneryStack port of the original PIXI + Backbone
+This is a TypeScript / SceneryStack port of the original
 "Electric Field of Dreams" simulation.
 
 ## Quick Start
