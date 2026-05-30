@@ -38,6 +38,7 @@ const ElectricFieldOfDreamsConstants = {
   PARTICLE_RADIUS: 10, // model-unit radius of a particle
   DEFAULT_CHARGE: 1,
   DEFAULT_MASS: 1,
+  HEAVY_MASS: 5, // preset mass for the "Heavy" toggle in the particle panel
 
   // ── Field-arrow geometry (view pixels) ──────────────────────────────────────
   ARROW_TAIL_WIDTH: 2,
