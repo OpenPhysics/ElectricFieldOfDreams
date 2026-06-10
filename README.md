@@ -61,3 +61,8 @@ git config core.hooksPath .githooks
 ## License
 
 MIT
+
+## Contributing
+
+See [OpenPhysics contributing guidelines](https://github.com/OpenPhysics/.github/blob/main/CONTRIBUTING.md).
+Report bugs via GitHub Issues; use org issue templates.
