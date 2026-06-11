@@ -1,0 +1,23 @@
+{
+  "title": "Campo eléctrico de los sueños",
+  "screens": {
+    "electricFieldOfDreams": "Campo eléctrico de los sueños"
+  },
+  "particles": {
+    "title": "Partículas",
+    "add": "Añadir",
+    "remove": "Quitar",
+    "charge": "Carga",
+    "positive": "Positiva",
+    "negative": "Negativa",
+    "mass": "Masa",
+    "light": "Ligera",
+    "heavy": "Pesada"
+  },
+  "externalField": {
+    "title": "Campo externo"
+  },
+  "fieldDensity": {
+    "title": "Densidad del campo"
+  }
+}
