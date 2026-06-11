@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "description": "SceneryStack port of the PhET 'Electric Field of Dreams' simulation. Place charged particles and observe Coulomb interactions and an adjustable uniform external field.",
-  "license": "MIT",
+  "license": "AGPL-3.0-or-later",
   "repository": {
     "type": "git",
     "url": "https://github.com/OpenPhysics/ElectricFieldOfDreams.git"
