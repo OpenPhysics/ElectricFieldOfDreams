@@ -18,7 +18,6 @@ import "./brand.js";
 import { onReadyToLaunch, PreferencesModel, Sim } from "scenerystack/sim";
 import { Tandem } from "scenerystack/tandem";
 import ElectricFieldOfDreamsColors from "./ElectricFieldOfDreamsColors.js";
-import electricFieldOfDreams from "./ElectricFieldOfDreamsNamespace.js";
 import { ElectricFieldOfDreamsScreen } from "./electric-field-of-dreams/ElectricFieldOfDreamsScreen.js";
 import { StringManager } from "./i18n/StringManager.js";
 
@@ -57,6 +56,5 @@ onReadyToLaunch(() => {
     },
   });
 
-  electricFieldOfDreams.register("sim", sim);
   sim.start();
 });

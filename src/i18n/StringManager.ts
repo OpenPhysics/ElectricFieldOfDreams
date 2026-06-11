@@ -5,8 +5,8 @@
  * Provides access to localized strings for all components.
  */
 
-import { LocalizedString, type ReadOnlyProperty } from "scenerystack";
-import electricFieldOfDreams from "../ElectricFieldOfDreamsNamespace.js";
+import type { ReadOnlyProperty } from "scenerystack/axon";
+import { LocalizedString } from "scenerystack/chipper";
 import stringsEn from "./strings_en.json";
 import stringsEs from "./strings_es.json";
 import stringsFr from "./strings_fr.json";
@@ -18,45 +18,46 @@ void (stringsEn satisfies typeof stringsFr);
 // biome-ignore lint/complexity/noVoid: intentional compile-time type assertion
 void (stringsFr satisfies typeof stringsEn);
 
+// ── Build the reactive string property tree ───────────────────────────────────
+const stringProperties = LocalizedString.getNestedStringProperties({
+  en: stringsEn,
+  fr: stringsFr,
+  es: stringsEs,
+});
+
 export class StringManager {
-  private static instance: StringManager;
-  private readonly stringProperties;
+  private static instance: StringManager | null = null;
 
   private constructor() {
-    this.stringProperties = LocalizedString.getNestedStringProperties({
-      en: stringsEn,
-      fr: stringsFr,
-      es: stringsEs,
-    });
+    // Private — obtain via getInstance()
   }
 
   public static getInstance(): StringManager {
-    if (!StringManager.instance) {
+    if (StringManager.instance === null) {
       StringManager.instance = new StringManager();
-      electricFieldOfDreams.register("StringManager", StringManager.instance);
     }
     return StringManager.instance;
   }
 
   public getTitleStringProperty(): ReadOnlyProperty<string> {
-    return this.stringProperties.titleStringProperty;
+    return stringProperties.titleStringProperty;
   }
 
   public getScreenNames(): { electricFieldOfDreamsStringProperty: ReadOnlyProperty<string> } {
     return {
-      electricFieldOfDreamsStringProperty: this.stringProperties.screens.electricFieldOfDreamsStringProperty,
+      electricFieldOfDreamsStringProperty: stringProperties.screens.electricFieldOfDreamsStringProperty,
     };
   }
 
   public getParticleStrings() {
-    return this.stringProperties.particles;
+    return stringProperties.particles;
   }
 
   public getExternalFieldStrings() {
-    return this.stringProperties.externalField;
+    return stringProperties.externalField;
   }
 
   public getFieldDensityStrings() {
-    return this.stringProperties.fieldDensity;
+    return stringProperties.fieldDensity;
   }
 }

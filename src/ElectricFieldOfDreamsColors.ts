@@ -1,10 +1,10 @@
-import { Color, ProfileColorProperty } from "scenerystack";
-import electricFieldOfDreams from "./ElectricFieldOfDreamsNamespace.js";
+import { Color, ProfileColorProperty } from "scenerystack/scenery";
+import ElectricFieldOfDreamsNamespace from "./ElectricFieldOfDreamsNamespace.js";
 
 const { BLACK, WHITE } = Color;
 
 function profileColor(name: string, def: Color | string, projector: Color | string): ProfileColorProperty {
-  return new ProfileColorProperty(electricFieldOfDreams, name, { default: def, projector });
+  return new ProfileColorProperty(ElectricFieldOfDreamsNamespace, name, { default: def, projector });
 }
 
 // ── Panel fills ───────────────────────────────────────────────────────────────
@@ -46,7 +46,5 @@ const ElectricFieldOfDreamsColors = {
   // from the field-sample arrows.
   externalFieldArrowProperty: profileColor("externalFieldArrow", "#F4B860", "#B06A00"),
 };
-
-electricFieldOfDreams.register("ElectricFieldOfDreamsColors", ElectricFieldOfDreamsColors);
 
 export default ElectricFieldOfDreamsColors;
