@@ -36,5 +36,9 @@
       "externalField": "Dirección y magnitud del campo externo",
       "externalFieldHelp": "Arrastra dentro del panel para ajustar el campo externo uniforme."
     }
+  },
+  "preferences": {
+    "title": "Simulación",
+    "fieldLatticeWidth": "Densidad del campo"
   }
 }

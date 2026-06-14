@@ -17,6 +17,8 @@
 import { BooleanProperty, createObservableArray, NumberProperty, type ObservableArray } from "scenerystack/axon";
 import { Bounds2, Vector2, Vector2Property } from "scenerystack/dot";
 import type { TModel } from "scenerystack/joist";
+import type { ElectricFieldOfDreamsPreferencesModel } from "../../preferences/ElectricFieldOfDreamsPreferencesModel.js";
+import electricFieldOfDreamsQueryParameters from "../../preferences/electricFieldOfDreamsQueryParameters.js";
 import ChargeFieldCalculator from "./ChargeFieldCalculator.js";
 import Constants from "./ElectricFieldOfDreamsConstants.js";
 import Particle from "./Particle.js";
@@ -29,7 +31,9 @@ export class ElectricFieldOfDreamsModel implements TModel {
   public readonly externalFieldProperty = new Vector2Property(new Vector2(0, 0));
 
   // Number of arrows along each axis of the field-visualization lattice.
-  public readonly fieldLatticeWidthProperty = new NumberProperty(Constants.DISCRETENESS_DEFAULT);
+  public readonly fieldLatticeWidthProperty = new NumberProperty(
+    electricFieldOfDreamsQueryParameters.fieldLatticeWidth,
+  );
 
   public readonly isPlayingProperty = new BooleanProperty(true);
 
@@ -48,6 +52,15 @@ export class ElectricFieldOfDreamsModel implements TModel {
   );
 
   private timeAccumulator = 0;
+
+  private readonly preferences: ElectricFieldOfDreamsPreferencesModel | undefined;
+
+  public constructor(preferences?: ElectricFieldOfDreamsPreferencesModel) {
+    this.preferences = preferences;
+    if (preferences) {
+      this.fieldLatticeWidthProperty.value = preferences.fieldLatticeWidthProperty.value;
+    }
+  }
 
   // ── Stepping ────────────────────────────────────────────────────────────────
 
@@ -210,6 +223,9 @@ export class ElectricFieldOfDreamsModel implements TModel {
     this.particles.clear();
     this.externalFieldProperty.reset();
     this.fieldLatticeWidthProperty.reset();
+    if (this.preferences) {
+      this.fieldLatticeWidthProperty.value = this.preferences.fieldLatticeWidthProperty.value;
+    }
     this.isPlayingProperty.reset();
     this.timeAccumulator = 0;
   }

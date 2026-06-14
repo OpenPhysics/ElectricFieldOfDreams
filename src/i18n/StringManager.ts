@@ -69,4 +69,9 @@ export class StringManager {
   public getFieldDensityStrings() {
     return stringProperties.fieldDensity;
   }
+
+  /** Simulation-specific preference labels shown in Preferences → Simulation. */
+  public getPreferences() {
+    return stringProperties.preferences;
+  }
 }

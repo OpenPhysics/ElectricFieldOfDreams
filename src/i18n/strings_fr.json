@@ -36,5 +36,9 @@
       "externalField": "Direction et intensité du champ externe",
       "externalFieldHelp": "Faites glisser dans la zone pour régler le champ externe uniforme."
     }
+  },
+  "preferences": {
+    "title": "Simulation",
+    "fieldLatticeWidth": "Densité du champ"
   }
 }

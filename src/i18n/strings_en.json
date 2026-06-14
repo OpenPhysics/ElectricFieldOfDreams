@@ -36,5 +36,9 @@
       "externalField": "External field direction and magnitude",
       "externalFieldHelp": "Drag within the pad to set the uniform external field."
     }
+  },
+  "preferences": {
+    "title": "Simulation",
+    "fieldLatticeWidth": "Field Density"
   }
 }

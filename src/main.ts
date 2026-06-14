@@ -20,12 +20,20 @@ import { Tandem } from "scenerystack/tandem";
 import ElectricFieldOfDreamsColors from "./ElectricFieldOfDreamsColors.js";
 import { ElectricFieldOfDreamsScreen } from "./electric-field-of-dreams/ElectricFieldOfDreamsScreen.js";
 import { StringManager } from "./i18n/StringManager.js";
+import { ElectricFieldOfDreamsPreferencesModel } from "./preferences/ElectricFieldOfDreamsPreferencesModel.js";
+import { ElectricFieldOfDreamsPreferencesNode } from "./preferences/ElectricFieldOfDreamsPreferencesNode.js";
 
 onReadyToLaunch(() => {
   const stringManager = StringManager.getInstance();
 
+  // Simulation-specific preferences; initial values come from electricFieldOfDreamsQueryParameters.
+  const electricFieldOfDreamsPreferences = new ElectricFieldOfDreamsPreferencesModel(
+    Tandem.ROOT.createTandem("preferences"),
+  );
+
   const screens = [
     new ElectricFieldOfDreamsScreen({
+      preferences: electricFieldOfDreamsPreferences,
       // The screen name Property updates automatically when the locale changes
       name: stringManager.getScreenNames().electricFieldOfDreamsStringProperty,
       tandem: Tandem.ROOT.createTandem("electricFieldOfDreamsScreen"),
@@ -40,6 +48,14 @@ onReadyToLaunch(() => {
         supportsProjectorMode: true,
         // Enables keyboard-navigation highlight outlines
         supportsInteractiveHighlights: true,
+      },
+      simulationOptions: {
+        customPreferences: [
+          {
+            createContent: (tandem: Tandem) =>
+              new ElectricFieldOfDreamsPreferencesNode(electricFieldOfDreamsPreferences, tandem),
+          },
+        ],
       },
       localizationOptions: {
         // Adds a language picker in Preferences → Language
