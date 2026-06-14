@@ -28,6 +28,13 @@
     },
     "currentDetails": "Hay {{count}} cargas en el campo. La simulación está {{state}}.",
     "playingLabel": "en marcha",
-    "pausedLabel": "en pausa"
+    "pausedLabel": "en pausa",
+    "controls": {
+      "positiveCharge": "Carga positiva",
+      "negativeCharge": "Carga negativa",
+      "particleHelp": "Arrastra para mover esta carga por la región del campo.",
+      "externalField": "Dirección y magnitud del campo externo",
+      "externalFieldHelp": "Arrastra dentro del panel para ajustar el campo externo uniforme."
+    }
   }
 }

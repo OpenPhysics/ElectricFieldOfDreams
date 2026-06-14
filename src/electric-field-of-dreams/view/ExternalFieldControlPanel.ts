@@ -44,6 +44,7 @@ export default class ExternalFieldControlPanel extends Panel {
 
   public constructor(model: ElectricFieldOfDreamsModel, modelViewTransform: ModelViewTransform2) {
     const strings = StringManager.getInstance().getExternalFieldStrings();
+    const a11y = StringManager.getInstance().getA11yStrings();
 
     const header = new Text(strings.titleStringProperty, {
       font: new PhetFont({ size: TITLE_FONT_SIZE, weight: "bold" }),
@@ -70,7 +71,14 @@ export default class ExternalFieldControlPanel extends Panel {
       clipArea: Shape.bounds(new Bounds2(-HALF, -HALF, HALF, HALF)),
       children: [arrow, knob],
     });
-    const pad = new Node({ cursor: "pointer", children: [padBackground, padLayer] });
+    const pad = new Node({
+      cursor: "pointer",
+      children: [padBackground, padLayer],
+      tagName: "div",
+      focusable: true,
+      accessibleName: a11y.controls.externalFieldStringProperty,
+      accessibleHelpText: a11y.controls.externalFieldHelpStringProperty,
+    });
 
     const content = new VBox({ spacing: VBOX_SPACING, children: [header, pad] });
     super(content, {

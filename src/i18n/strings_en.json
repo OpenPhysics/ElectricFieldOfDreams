@@ -28,6 +28,13 @@
     },
     "currentDetails": "There are {{count}} charges in the field. The simulation is {{state}}.",
     "playingLabel": "playing",
-    "pausedLabel": "paused"
+    "pausedLabel": "paused",
+    "controls": {
+      "positiveCharge": "Positive charge",
+      "negativeCharge": "Negative charge",
+      "particleHelp": "Drag to move this charge around the field region.",
+      "externalField": "External field direction and magnitude",
+      "externalFieldHelp": "Drag within the pad to set the uniform external field."
+    }
   }
 }

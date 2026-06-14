@@ -28,6 +28,13 @@
     },
     "currentDetails": "Il y a {{count}} charges dans le champ. La simulation est {{state}}.",
     "playingLabel": "en cours",
-    "pausedLabel": "en pause"
+    "pausedLabel": "en pause",
+    "controls": {
+      "positiveCharge": "Charge positive",
+      "negativeCharge": "Charge négative",
+      "particleHelp": "Faites glisser pour déplacer cette charge dans la région du champ.",
+      "externalField": "Direction et intensité du champ externe",
+      "externalFieldHelp": "Faites glisser dans la zone pour régler le champ externe uniforme."
+    }
   }
 }

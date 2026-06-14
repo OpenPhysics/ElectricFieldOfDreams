@@ -11,6 +11,7 @@ import type { ModelViewTransform2 } from "scenerystack/phetcommon";
 import { Circle, DragListener, Node, Text } from "scenerystack/scenery";
 import { PhetFont } from "scenerystack/scenery-phet";
 import ElectricFieldOfDreamsColors from "../../ElectricFieldOfDreamsColors.js";
+import { StringManager } from "../../i18n/StringManager.js";
 import Constants from "../model/ElectricFieldOfDreamsConstants.js";
 import type { ElectricFieldOfDreamsModel } from "../model/ElectricFieldOfDreamsModel.js";
 import type Particle from "../model/Particle.js";
@@ -22,7 +23,15 @@ export default class ParticleNode extends Node {
   public readonly particle: Particle;
 
   public constructor(particle: Particle, model: ElectricFieldOfDreamsModel, modelViewTransform: ModelViewTransform2) {
-    super({ cursor: "pointer" });
+    const a11y = StringManager.getInstance().getA11yStrings();
+    super({
+      cursor: "pointer",
+      tagName: "div",
+      focusable: true,
+      accessibleName:
+        particle.charge >= 0 ? a11y.controls.positiveChargeStringProperty : a11y.controls.negativeChargeStringProperty,
+      accessibleHelpText: a11y.controls.particleHelpStringProperty,
+    });
     this.particle = particle;
 
     const radius = modelViewTransform.modelToViewDeltaX(Constants.PARTICLE_RADIUS);
