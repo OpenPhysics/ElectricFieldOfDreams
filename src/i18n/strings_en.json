@@ -19,5 +19,15 @@
   },
   "fieldDensity": {
     "title": "Field Density"
+  },
+  "a11y": {
+    "screenSummary": {
+      "playArea": "The play area is a field region where positive and negative charges can be placed and dragged. Arrows show the electric field, which the charges and an adjustable uniform external field shape together.",
+      "controlArea": "The controls add or remove charges, set the external field's direction and magnitude, adjust the field-arrow density, and play, pause, or step the simulation. A Reset All button returns the simulation to its starting state.",
+      "interactionHint": "Add charges and drag them around, or adjust the external field, to see how the electric field changes."
+    },
+    "currentDetails": "There are {{count}} charges in the field. The simulation is {{state}}.",
+    "playingLabel": "playing",
+    "pausedLabel": "paused"
   }
 }

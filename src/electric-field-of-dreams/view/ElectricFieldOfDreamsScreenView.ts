@@ -21,6 +21,7 @@ import Constants from "../model/ElectricFieldOfDreamsConstants.js";
 import type { ElectricFieldOfDreamsModel } from "../model/ElectricFieldOfDreamsModel.js";
 import type Particle from "../model/Particle.js";
 import BoundsNode from "./BoundsNode.js";
+import { ElectricFieldOfDreamsScreenSummaryContent } from "./ElectricFieldOfDreamsScreenSummaryContent.js";
 import ExternalFieldControlPanel from "./ExternalFieldControlPanel.js";
 import FieldGridNode from "./FieldGridNode.js";
 import ParticleControlPanel from "./ParticleControlPanel.js";
@@ -38,7 +39,10 @@ export class ElectricFieldOfDreamsScreenView extends ScreenView {
   private readonly fieldGridNode: FieldGridNode;
 
   public constructor(model: ElectricFieldOfDreamsModel, providedOptions: ElectricFieldOfDreamsScreenViewOptions) {
-    super(providedOptions);
+    super({
+      ...providedOptions,
+      screenSummaryContent: new ElectricFieldOfDreamsScreenSummaryContent(model),
+    });
 
     const layoutBounds = this.layoutBounds;
 
@@ -146,6 +150,23 @@ export class ElectricFieldOfDreamsScreenView extends ScreenView {
       playbackControls,
       resetAllButton,
     ];
+
+    // ── Accessibility: keyboard / reading traversal order ───────────────────────
+    // Deterministic Tab/reading order: the draggable charges first, then the
+    // control panels, playback controls, and Reset All last. ScreenView throws if
+    // you set pdomOrder on itself, so use a wrapper Node.
+    this.addChild(
+      new Node({
+        pdomOrder: [
+          particleLayer,
+          particleControlPanel,
+          externalFieldControlPanel,
+          fieldDensityPanel,
+          playbackControls,
+          resetAllButton,
+        ],
+      }),
+    );
   }
 
   private static createFieldDensityPanel(model: ElectricFieldOfDreamsModel): Panel {

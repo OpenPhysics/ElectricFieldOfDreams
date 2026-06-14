@@ -19,5 +19,15 @@
   },
   "fieldDensity": {
     "title": "Densité du champ"
+  },
+  "a11y": {
+    "screenSummary": {
+      "playArea": "La zone de jeu est une région de champ où des charges positives et négatives peuvent être placées et déplacées. Des flèches montrent le champ électrique, que les charges et un champ externe uniforme ajustable façonnent ensemble.",
+      "controlArea": "Les commandes ajoutent ou retirent des charges, règlent la direction et l'intensité du champ externe, ajustent la densité des flèches de champ, et lisent, mettent en pause ou avancent la simulation. Un bouton Tout réinitialiser ramène la simulation à son état initial.",
+      "interactionHint": "Ajoutez des charges et déplacez-les, ou ajustez le champ externe, pour voir comment le champ électrique change."
+    },
+    "currentDetails": "Il y a {{count}} charges dans le champ. La simulation est {{state}}.",
+    "playingLabel": "en cours",
+    "pausedLabel": "en pause"
   }
 }

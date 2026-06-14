@@ -19,5 +19,15 @@
   },
   "fieldDensity": {
     "title": "Densidad del campo"
+  },
+  "a11y": {
+    "screenSummary": {
+      "playArea": "El área de juego es una región de campo donde se pueden colocar y arrastrar cargas positivas y negativas. Las flechas muestran el campo eléctrico, que las cargas y un campo externo uniforme ajustable conforman juntos.",
+      "controlArea": "Los controles agregan o quitan cargas, ajustan la dirección y la magnitud del campo externo, ajustan la densidad de las flechas de campo, y reproducen, pausan o avanzan la simulación. Un botón Restablecer todo devuelve la simulación a su estado inicial.",
+      "interactionHint": "Agrega cargas y arrástralas, o ajusta el campo externo, para ver cómo cambia el campo eléctrico."
+    },
+    "currentDetails": "Hay {{count}} cargas en el campo. La simulación está {{state}}.",
+    "playingLabel": "en marcha",
+    "pausedLabel": "en pausa"
   }
 }

@@ -14,6 +14,14 @@ SceneryStack port of the PhET *Electric Field of Dreams* simulation. Place charg
 | Model | `src/electric-field-of-dreams/model/` |
 | View | `src/electric-field-of-dreams/view/ElectricFieldOfDreamsScreenView.ts` |
 
+## Accessibility
+
+Follows the shared [OpenPhysics accessibility convention](https://github.com/OpenPhysics/OpenPhysics/blob/main/ACCESSIBILITY.md).
+`ElectricFieldOfDreamsScreenView` registers `ElectricFieldOfDreamsScreenSummaryContent` (live
+current-details: charge count + play state) via the `screenSummaryContent` super-option, and
+orders the PDOM through a wrapper `Node`. A11y strings live under the top-level `a11y` key in each
+locale JSON, via `StringManager.getA11yStrings()`.
+
 ## Notes
 
 - Particles detach from physics while dragging
