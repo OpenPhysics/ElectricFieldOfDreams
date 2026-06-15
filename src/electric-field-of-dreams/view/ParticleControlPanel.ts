@@ -42,14 +42,14 @@ export default class ParticleControlPanel extends Panel {
 
     const positiveButton = new TextPushButton(strings.positiveStringProperty, {
       font,
-      baseColor: "#a5d6a7",
+      baseColor: ElectricFieldOfDreamsColors.positiveButtonColorProperty,
       listener: () => {
         chargeIsPositiveProperty.value = true;
       },
     });
     const negativeButton = new TextPushButton(strings.negativeStringProperty, {
       font,
-      baseColor: "#ef9a9a",
+      baseColor: ElectricFieldOfDreamsColors.negativeButtonColorProperty,
       listener: () => {
         chargeIsPositiveProperty.value = false;
       },
@@ -64,14 +64,14 @@ export default class ParticleControlPanel extends Panel {
 
     const lightButton = new TextPushButton(strings.lightStringProperty, {
       font,
-      baseColor: "#b3e0ff",
+      baseColor: ElectricFieldOfDreamsColors.massButtonColorProperty,
       listener: () => {
         massIsLightProperty.value = true;
       },
     });
     const heavyButton = new TextPushButton(strings.heavyStringProperty, {
       font,
-      baseColor: "#b3e0ff",
+      baseColor: ElectricFieldOfDreamsColors.massButtonColorProperty,
       listener: () => {
         massIsLightProperty.value = false;
       },
@@ -83,7 +83,7 @@ export default class ParticleControlPanel extends Panel {
 
     const addButton = new TextPushButton(strings.addStringProperty, {
       font,
-      baseColor: "#a5d6a7",
+      baseColor: ElectricFieldOfDreamsColors.positiveButtonColorProperty,
       listener: () => {
         const charge = chargeIsPositiveProperty.value ? Constants.DEFAULT_CHARGE : -Constants.DEFAULT_CHARGE;
         const mass = massIsLightProperty.value ? Constants.DEFAULT_MASS : Constants.HEAVY_MASS;
@@ -92,7 +92,7 @@ export default class ParticleControlPanel extends Panel {
     });
     const removeButton = new TextPushButton(strings.removeStringProperty, {
       font,
-      baseColor: "#ef9a9a",
+      baseColor: ElectricFieldOfDreamsColors.negativeButtonColorProperty,
       listener: () => {
         model.removeParticle();
       },

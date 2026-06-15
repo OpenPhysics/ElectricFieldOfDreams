@@ -45,6 +45,12 @@ const ElectricFieldOfDreamsColors = {
   // The user-draggable external-field arrow — a warm accent so it is clearly distinct
   // from the field-sample arrows.
   externalFieldArrowProperty: profileColor("externalFieldArrow", "#F4B860", "#B06A00"),
+
+  // Particle-control panel buttons: green for positive/add, red for negative/remove,
+  // blue for the mass (light/heavy) selectors.
+  positiveButtonColorProperty: profileColor("positiveButton", "#A5D6A7", "#A5D6A7"),
+  negativeButtonColorProperty: profileColor("negativeButton", "#EF9A9A", "#EF9A9A"),
+  massButtonColorProperty: profileColor("massButton", "#B3E0FF", "#B3E0FF"),
 };
 
 export default ElectricFieldOfDreamsColors;
