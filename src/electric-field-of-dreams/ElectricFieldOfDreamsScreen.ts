@@ -1,3 +1,4 @@
+import { type EmptySelfOptions, optionize } from "scenerystack/phet-core";
 import { Screen, type ScreenOptions } from "scenerystack/sim";
 import type { Tandem } from "scenerystack/tandem";
 import type { ElectricFieldOfDreamsPreferencesModel } from "../preferences/ElectricFieldOfDreamsPreferencesModel.js";
@@ -15,10 +16,12 @@ export class ElectricFieldOfDreamsScreen extends Screen<ElectricFieldOfDreamsMod
     super(
       () => new ElectricFieldOfDreamsModel(options.preferences),
       (model) => new ElectricFieldOfDreamsScreenView(model, { tandem: options.tandem.createTandem("view") }),
-      {
-        createKeyboardHelpNode: () => new ElectricFieldOfDreamsKeyboardHelpContent(),
-        ...options,
-      },
+      optionize<ElectricFieldOfDreamsScreenOptions, EmptySelfOptions, ScreenOptions>()(
+        {
+          createKeyboardHelpNode: () => new ElectricFieldOfDreamsKeyboardHelpContent(),
+        },
+        options,
+      ),
     );
   }
 }
