@@ -32,10 +32,10 @@ const ElectricFieldOfDreamsColors = {
   // The bounding box around the play area.
   boundsStrokeProperty: profileColor("boundsStroke", "rgba(255, 255, 255, 0.35)", "rgba(0, 0, 0, 0.25)"),
 
-  // Particles — a mid steel-blue body that reads on both themes (matches the original),
-  // with a dark navy outline and a contrasting +/- charge glyph.
-  particleFillProperty: profileColor("particleFill", "#7986A6", "#7986A6"),
-  particleStrokeProperty: profileColor("particleStroke", "#21366B", "#21366B"),
+  // Particles — mid steel-blue body with a dark navy outline; projector uses deeper
+  // tones so the body stays distinct on white.
+  particleFillProperty: profileColor("particleFill", "#7986A6", "#5a6a8a"),
+  particleStrokeProperty: profileColor("particleStroke", "#21366B", "#152447"),
   particleSymbolProperty: profileColor("particleSymbol", WHITE, BLACK),
 
   // Electric-field sample arrows (the lattice grid). Lighter on the dark theme so the
@@ -47,10 +47,10 @@ const ElectricFieldOfDreamsColors = {
   externalFieldArrowProperty: profileColor("externalFieldArrow", "#F4B860", "#B06A00"),
 
   // Particle-control panel buttons: green for positive/add, red for negative/remove,
-  // blue for the mass (light/heavy) selectors.
-  positiveButtonColorProperty: profileColor("positiveButton", "#A5D6A7", "#A5D6A7"),
-  negativeButtonColorProperty: profileColor("negativeButton", "#EF9A9A", "#EF9A9A"),
-  massButtonColorProperty: profileColor("massButton", "#B3E0FF", "#B3E0FF"),
+  // blue for the mass (light/heavy) selectors — deeper projector fills for white chrome.
+  positiveButtonColorProperty: profileColor("positiveButton", "#A5D6A7", "#66BB6A"),
+  negativeButtonColorProperty: profileColor("negativeButton", "#EF9A9A", "#E57373"),
+  massButtonColorProperty: profileColor("massButton", "#B3E0FF", "#64B5F6"),
 
   // Fleet-standard aliases for shared Panel + ButtonOptions modules.
   panelBackgroundColorProperty: profileColor("panelBackground", PANEL_FILL_DARK, PANEL_FILL_LIGHT),
