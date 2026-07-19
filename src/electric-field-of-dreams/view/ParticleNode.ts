@@ -8,7 +8,7 @@
 
 import { Vector2 } from "scenerystack/dot";
 import type { ModelViewTransform2 } from "scenerystack/phetcommon";
-import { Circle, DragListener, Node, Text } from "scenerystack/scenery";
+import { Circle, DragListener, KeyboardDragListener, Node, Text } from "scenerystack/scenery";
 import { PhetFont } from "scenerystack/scenery-phet";
 import ElectricFieldOfDreamsColors from "../../ElectricFieldOfDreamsColors.js";
 import { StringManager } from "../../i18n/StringManager.js";
@@ -54,20 +54,37 @@ export default class ParticleNode extends Node {
       this.translation = modelViewTransform.modelToViewPosition(position);
     });
 
+    const startDrag = (): void => {
+      particle.isDraggingProperty.value = true;
+    };
+    const endDrag = (): void => {
+      particle.isDraggingProperty.value = false;
+    };
+
     this.addInputListener(
       new DragListener({
-        start: () => {
-          particle.isDraggingProperty.value = true;
-        },
+        start: startDrag,
         drag: (event) => {
           const viewPoint = this.globalToParentPoint(event.pointer.point);
           const modelPoint = modelViewTransform.viewToModelPosition(viewPoint);
           // Keep the dragged particle inside the play area.
           particle.setPosition(model.bounds.closestPointTo(modelPoint));
         },
-        end: () => {
-          particle.isDraggingProperty.value = false;
+        end: endDrag,
+      }),
+    );
+
+    this.addInputListener(
+      new KeyboardDragListener({
+        transform: modelViewTransform,
+        dragSpeed: 80,
+        shiftDragSpeed: 30,
+        start: startDrag,
+        drag: (_event, listener) => {
+          const next = particle.positionProperty.value.plusXY(listener.modelDelta.x, listener.modelDelta.y);
+          particle.setPosition(model.bounds.closestPointTo(next));
         },
+        end: endDrag,
       }),
     );
   }
