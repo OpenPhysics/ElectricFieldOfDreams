@@ -49,7 +49,7 @@ Data flows Model → View through AXON `Property` objects and `particles` `Obser
 - **Fixed timestep accumulator.** `FRAME_DURATION` = 35 ms wall-clock; `DT_PER_FRAME` = 0.15 model
   seconds per slice; `MAX_CATCHUP_STEPS` = 5. Step button → `stepOnce()`.
 - **Y-down model space.** `ModelViewTransform2` with non-inverted Y (+y is down), matching PhET.
-- **Nested constants.** `src/electric-field-of-dreams/model/ElectricFieldOfDreamsConstants.ts`.
+- **Nested constants.** `src/ElectricFieldOfDreamsConstants.ts`.
 
 ## View components
 

@@ -11,8 +11,8 @@ import type { ModelViewTransform2 } from "scenerystack/phetcommon";
 import { Circle, DragListener, KeyboardDragListener, Node, Text } from "scenerystack/scenery";
 import { PhetFont } from "scenerystack/scenery-phet";
 import ElectricFieldOfDreamsColors from "../../ElectricFieldOfDreamsColors.js";
+import Constants from "../../ElectricFieldOfDreamsConstants.js";
 import { StringManager } from "../../i18n/StringManager.js";
-import Constants from "../model/ElectricFieldOfDreamsConstants.js";
 import type { ElectricFieldOfDreamsModel } from "../model/ElectricFieldOfDreamsModel.js";
 import type Particle from "../model/Particle.js";
 

@@ -17,10 +17,10 @@
 import { BooleanProperty, createObservableArray, NumberProperty, type ObservableArray } from "scenerystack/axon";
 import { Bounds2, Vector2, Vector2Property } from "scenerystack/dot";
 import type { TModel } from "scenerystack/joist";
+import Constants from "../../ElectricFieldOfDreamsConstants.js";
 import type { ElectricFieldOfDreamsPreferencesModel } from "../../preferences/ElectricFieldOfDreamsPreferencesModel.js";
 import electricFieldOfDreamsQueryParameters from "../../preferences/electricFieldOfDreamsQueryParameters.js";
 import ChargeFieldCalculator from "./ChargeFieldCalculator.js";
-import Constants from "./ElectricFieldOfDreamsConstants.js";
 import Particle from "./Particle.js";
 
 export class ElectricFieldOfDreamsModel implements TModel {

@@ -8,8 +8,8 @@
 
 import { NumberProperty } from "scenerystack/axon";
 import type { Tandem } from "scenerystack/tandem";
+import Constants from "../ElectricFieldOfDreamsConstants.js";
 import ElectricFieldOfDreamsNamespace from "../ElectricFieldOfDreamsNamespace.js";
-import Constants from "../electric-field-of-dreams/model/ElectricFieldOfDreamsConstants.js";
 import electricFieldOfDreamsQueryParameters from "./electricFieldOfDreamsQueryParameters.js";
 
 export const FIELD_LATTICE_WIDTH_RANGE = Constants.DISCRETENESS_RANGE;

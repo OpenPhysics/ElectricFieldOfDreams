@@ -14,7 +14,7 @@ import type { Bounds2 } from "scenerystack/dot";
 import type { ModelViewTransform2 } from "scenerystack/phetcommon";
 import { CanvasNode } from "scenerystack/scenery";
 import ElectricFieldOfDreamsColors from "../../ElectricFieldOfDreamsColors.js";
-import Constants from "../model/ElectricFieldOfDreamsConstants.js";
+import Constants from "../../ElectricFieldOfDreamsConstants.js";
 import type { ElectricFieldOfDreamsModel } from "../model/ElectricFieldOfDreamsModel.js";
 
 export default class FieldGridNode extends CanvasNode {

@@ -9,7 +9,7 @@
 import type { ModelViewTransform2 } from "scenerystack/phetcommon";
 import { Rectangle } from "scenerystack/scenery";
 import ElectricFieldOfDreamsColors from "../../ElectricFieldOfDreamsColors.js";
-import Constants from "../model/ElectricFieldOfDreamsConstants.js";
+import Constants from "../../ElectricFieldOfDreamsConstants.js";
 import type { ElectricFieldOfDreamsModel } from "../model/ElectricFieldOfDreamsModel.js";
 
 const LINE_WIDTH = 6;

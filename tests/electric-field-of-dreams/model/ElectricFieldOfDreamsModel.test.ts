@@ -1,6 +1,6 @@
 import { Vector2 } from "scenerystack/dot";
 import { afterEach, describe, expect, it } from "vitest";
-import Constants from "../../../src/electric-field-of-dreams/model/ElectricFieldOfDreamsConstants.js";
+import Constants from "../../../src/ElectricFieldOfDreamsConstants.js";
 import { ElectricFieldOfDreamsModel } from "../../../src/electric-field-of-dreams/model/ElectricFieldOfDreamsModel.js";
 import { ElectricFieldOfDreamsPreferencesModel } from "../../../src/preferences/ElectricFieldOfDreamsPreferencesModel.js";
 

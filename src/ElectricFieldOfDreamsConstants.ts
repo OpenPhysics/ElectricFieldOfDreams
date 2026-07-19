@@ -48,3 +48,6 @@ const ElectricFieldOfDreamsConstants = {
 };
 
 export default ElectricFieldOfDreamsConstants;
+
+/** Corner radius shared by themed panels (px). */
+export const PANEL_CORNER_RADIUS = 5;

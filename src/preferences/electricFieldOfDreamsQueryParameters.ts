@@ -10,8 +10,8 @@
 
 import { logGlobal } from "scenerystack/phet-core";
 import { QueryStringMachine } from "scenerystack/query-string-machine";
+import Constants from "../ElectricFieldOfDreamsConstants.js";
 import ElectricFieldOfDreamsNamespace from "../ElectricFieldOfDreamsNamespace.js";
-import Constants from "../electric-field-of-dreams/model/ElectricFieldOfDreamsConstants.js";
 
 const electricFieldOfDreamsQueryParameters = QueryStringMachine.getAll({
   /** Width of the field-sampling lattice (grid discreteness). */

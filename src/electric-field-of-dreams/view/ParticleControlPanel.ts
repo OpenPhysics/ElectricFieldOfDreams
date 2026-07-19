@@ -11,8 +11,8 @@ import { HBox, Text, VBox } from "scenerystack/scenery";
 import { PhetFont } from "scenerystack/scenery-phet";
 import { Panel, TextPushButton } from "scenerystack/sun";
 import ElectricFieldOfDreamsColors from "../../ElectricFieldOfDreamsColors.js";
+import Constants from "../../ElectricFieldOfDreamsConstants.js";
 import { StringManager } from "../../i18n/StringManager.js";
-import Constants from "../model/ElectricFieldOfDreamsConstants.js";
 import type { ElectricFieldOfDreamsModel } from "../model/ElectricFieldOfDreamsModel.js";
 
 const TITLE_FONT_SIZE = 16;

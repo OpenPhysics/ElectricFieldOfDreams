@@ -15,9 +15,10 @@ import { NumberControl, PhetFont, PlayPauseButton, ResetAllButton, StepForwardBu
 import { ScreenView, type ScreenViewOptions } from "scenerystack/sim";
 import { Panel } from "scenerystack/sun";
 import type { Tandem } from "scenerystack/tandem";
+import { FLAT_RESET_ALL_BUTTON_OPTIONS } from "../../common/ElectricFieldOfDreamsButtonOptions.js";
 import ElectricFieldOfDreamsColors from "../../ElectricFieldOfDreamsColors.js";
+import Constants from "../../ElectricFieldOfDreamsConstants.js";
 import { StringManager } from "../../i18n/StringManager.js";
-import Constants from "../model/ElectricFieldOfDreamsConstants.js";
 import type { ElectricFieldOfDreamsModel } from "../model/ElectricFieldOfDreamsModel.js";
 import type Particle from "../model/Particle.js";
 import BoundsNode from "./BoundsNode.js";
@@ -120,6 +121,7 @@ export class ElectricFieldOfDreamsScreenView extends ScreenView {
     });
 
     const resetAllButton = new ResetAllButton({
+      ...FLAT_RESET_ALL_BUTTON_OPTIONS,
       listener: () => {
         this.interruptSubtreeInput();
         model.reset();
