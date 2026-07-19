@@ -25,7 +25,7 @@ export class ElectricFieldOfDreamsScreenSummaryContent extends ScreenSummaryCont
         a11y.playingLabelStringProperty,
         a11y.pausedLabelStringProperty,
         model.particles.lengthProperty,
-        model.isPlayingProperty,
+        model.timer.isPlayingProperty,
       ],
       (template, playingLabel, pausedLabel, count, isPlaying) =>
         StringUtils.fillIn(template, {

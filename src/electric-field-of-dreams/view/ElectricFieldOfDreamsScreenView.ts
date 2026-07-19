@@ -108,10 +108,10 @@ export class ElectricFieldOfDreamsScreenView extends ScreenView {
     model.particles.elementRemovedEmitter.addListener(removeParticleNode);
 
     // ── Bottom play/step controls ────────────────────────────────────────────
-    const playPauseButton = new PlayPauseButton(model.isPlayingProperty, { radius: 22 });
+    const playPauseButton = new PlayPauseButton(model.timer.isPlayingProperty, { radius: 22 });
     const stepForwardButton = new StepForwardButton({
       radius: 18,
-      enabledProperty: DerivedProperty.not(model.isPlayingProperty),
+      enabledProperty: DerivedProperty.not(model.timer.isPlayingProperty),
       listener: () => model.stepOnce(),
     });
     const playbackControls = new HBox({

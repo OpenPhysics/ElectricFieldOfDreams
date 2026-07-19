@@ -14,9 +14,10 @@
  * object pools are dropped (axon handles change notification via immutable vectors).
  */
 
-import { BooleanProperty, createObservableArray, NumberProperty, type ObservableArray } from "scenerystack/axon";
+import { createObservableArray, NumberProperty, type ObservableArray } from "scenerystack/axon";
 import { Bounds2, Vector2, Vector2Property } from "scenerystack/dot";
 import type { TModel } from "scenerystack/joist";
+import { TimeModel } from "../../common/TimeModel.js";
 import Constants from "../../ElectricFieldOfDreamsConstants.js";
 import type { ElectricFieldOfDreamsPreferencesModel } from "../../preferences/ElectricFieldOfDreamsPreferencesModel.js";
 import electricFieldOfDreamsQueryParameters from "../../preferences/electricFieldOfDreamsQueryParameters.js";
@@ -35,7 +36,8 @@ export class ElectricFieldOfDreamsModel implements TModel {
     electricFieldOfDreamsQueryParameters.fieldLatticeWidth,
   );
 
-  public readonly isPlayingProperty = new BooleanProperty(true);
+  /** Play/pause clock — starts playing (continuous animation). */
+  public readonly timer = new TimeModel(true);
 
   // System bounds (model units): a SYSTEM_WIDTH × SYSTEM_HEIGHT box at (MIN_X, MIN_Y).
   public readonly minX = Constants.SYSTEM_MIN_X;
@@ -65,7 +67,8 @@ export class ElectricFieldOfDreamsModel implements TModel {
   // ── Stepping ────────────────────────────────────────────────────────────────
 
   public step(dt: number): void {
-    if (!this.isPlayingProperty.value) {
+    this.timer.step(dt);
+    if (!this.timer.isPlayingProperty.value) {
       return;
     }
     const frame = Constants.FRAME_DURATION;
@@ -212,11 +215,11 @@ export class ElectricFieldOfDreamsModel implements TModel {
   // ── Controls ────────────────────────────────────────────────────────────────
 
   public play(): void {
-    this.isPlayingProperty.value = true;
+    this.timer.isPlayingProperty.value = true;
   }
 
   public pause(): void {
-    this.isPlayingProperty.value = false;
+    this.timer.isPlayingProperty.value = false;
   }
 
   public reset(): void {
@@ -226,7 +229,7 @@ export class ElectricFieldOfDreamsModel implements TModel {
     if (this.preferences) {
       this.fieldLatticeWidthProperty.value = this.preferences.fieldLatticeWidthProperty.value;
     }
-    this.isPlayingProperty.reset();
+    this.timer.reset();
     this.timeAccumulator = 0;
   }
 }
