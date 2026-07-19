@@ -1,64 +1,86 @@
 # Model - Electric Field of Dreams
 
-This document describes the model (the underlying physics, math, and behavior) for the simulation, in
-terms appropriate for an educator. It is the companion to
+This document describes the model (the underlying physics, math, and behavior) for the simulation,
+in terms appropriate for an educator. It is the companion to
 [implementation-notes.md](./implementation-notes.md), which targets developers.
 
 ## Overview
 
-The simulation lets students build a system of charged particles and watch them interact through the
-**Coulomb force**, while visualizing the resulting **electric field** as a grid of arrows. A uniform
-**external field** can be added and adjusted, so students can explore how charges respond to both each
-other and to an applied field, and how the superposition of all sources shapes the total field.
+The simulation lets students place **positive and negative point charges** in a box and watch them
+interact through the **Coulomb force**, while a grid of arrows visualizes the **electric field**.
+A uniform **external field** (direction and magnitude set by a draggable arrow control) can be
+superposed, so students explore how charges respond to each other and to an applied field, and how
+individual source fields add vectorially.
+
+Key ideas a student should take away:
+
+- Like charges repel and opposite charges attract, with force strength falling off with separation.
+- The field at any point is the **vector sum** of contributions from every charge plus the
+  external field (**superposition**).
+- Heavier particles accelerate more slowly under the same force; dragging a particle pauses its
+  motion but it still acts as a field source for the others.
 
 ## Quantities and units
 
-The model uses scaled simulation units chosen for clear on-screen behavior rather than calibrated SI
-values; the relationships below are what matter pedagogically.
+The model uses **scaled simulation units** (a 300 × 300 play box) tuned for on-screen behavior,
+not laboratory SI calibration.
 
 | Quantity | Symbol | Notes |
 |---|---|---|
-| Charge | q | Positive or negative, selectable; fixed magnitude per particle |
-| Mass | m | Light or heavy, selectable; sets inertia |
-| Position / velocity | r, v | Per particle, in 2-D |
-| Particle field | E_particle | Field produced by each charge |
-| External field | E_ext | Uniform field set by a draggable arrow |
-| Total field | E | Vector sum sampled on a lattice |
+| Charge | q | ±1 per particle (sign selectable) |
+| Mass | m | Light (1) or heavy (5) — sets inertia |
+| Position / velocity | **r**, **v** | 2-D per particle |
+| Inter-particle force | **F** | Coulomb law between pairs |
+| External field | **E**_ext | Uniform, user-set vector |
+| Total field (display) | **E** | Sampled on an adjustable arrow lattice |
+
+Model coordinates use **y increasing downward** on screen ("north" is smaller y).
 
 ## Governing equations
 
-**Coulomb's law** — the force between two point charges:
+**Coulomb force** between two point charges (magnitude, along the line joining them):
 
 ```
-F = k · q₁ q₂ / r²   (along the line joining them; repulsive for like charges)
+|F| = k · |q₁ q₂| / r²     (like charges repel, opposites attract)
 ```
 
-**Field of a point charge** sampled at a location:
+In the simulation the pairwise force is implemented with a direction from target toward source and
+a signed magnitude proportional to q₁ q₂ / r³, equivalent to the usual inverse-square law.
+
+**Force on a charge in a field:**
 
 ```
-E_particle = k · q / r²   (directed away from positive, toward negative charge)
+F = q · E        →        a = F / m
 ```
 
-**Superposition** — the field drawn at each lattice point is the vector sum of every particle's field
-plus the uniform external field:
+**Superposition** — field arrows at each lattice point:
 
 ```
 E_total = Σ E_particle + E_ext
 ```
 
-**Motion** — each particle obeys Newton's second law, `a = F_net / m`, integrated through the model's
-`step(dt)`. While a particle is being dragged it is detached from the physics and follows the pointer.
+Each particle's contribution follows a 1/r² falloff from that charge (visualization uses a
+slightly larger constant than the force law for clearer arrows).
+
+**Motion** — explicit Euler integration each fixed step: reset acceleration → wall bounces →
+apply external field → sum Coulomb forces → update velocity (speed-capped) → update position.
+
+While a particle is **dragged**, it does not integrate (velocity frozen) but still exerts Coulomb
+forces on other particles.
 
 ## Simplifications and assumptions
 
-- Two-dimensional, non-relativistic point charges; no magnetic effects or radiation.
-- Constants are scaled for visualization; absolute SI magnitudes are not the teaching goal.
-- The external field is perfectly uniform across the play area.
-- Optional damping/boundary handling keeps particles within the visible bounds.
+- **2-D, non-relativistic point charges** — no magnetic forces, radiation, or charge transfer.
+- **Scaled constants** — `k` values are chosen for lively motion in the box, not Coulomb's constant
+  in SI units.
+- **Perfectly uniform external field** across the entire play area.
+- **Wall bounces** — inelastic reflection keeps particles inside the box (with a deliberate
+  east-wall velocity quirk carried from the PhET original).
+- **No air drag** beyond the velocity cap applied each step.
 
 ## References
 
-- Coulomb's law and electric fields, any introductory E&M text (e.g. Griffiths, *Introduction to
-  Electrodynamics*, Ch. 2).
-- Based on the PhET *Electric Field of Dreams* teaching model.
-</content>
+- Coulomb's law, electric field, and superposition, introductory E&M (e.g. Griffiths, *Introduction
+  to Electrodynamics*, Ch. 2; Young & Freedman, *University Physics*, Ch. 21).
+- PhET Interactive Simulations, [*Electric Field of Dreams*](https://phet.colorado.edu/en/simulations/electric-field-of-dreams)
+  (University of Colorado) — original Java simulation this port reimplements.

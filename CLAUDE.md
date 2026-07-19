@@ -6,13 +6,15 @@ Sim-specific context for AI assistants. General SceneryStack guidance: [OpenPhys
 
 SceneryStack port of the PhET *Electric Field of Dreams* simulation. Place charged particles, observe Coulomb forces, and visualize the field with an adjustable uniform external field. The model fuses the original's `EFDSimulation` + `System` + its ordered list of "laws"/"propagators" into one `step` chain.
 
+Physics for educators: `doc/model.md`. Architecture: `doc/implementation-notes.md`.
+
 ## Key files
 
 | Area | Location |
 |---|---|
 | Screen | `src/electric-field-of-dreams/ElectricFieldOfDreamsScreen.ts` |
 | Model | `model/ElectricFieldOfDreamsModel.ts` (laws + stepping), `Particle.ts`, `ChargeFieldCalculator.ts` (arrow-grid sampling), `ElectricFieldOfDreamsConstants.ts` |
-| View | `view/ElectricFieldOfDreamsScreenView.ts`, `ParticleNode.ts`, `FieldGridNode.ts` (arrow lattice), `ExternalFieldControlPanel.ts`, `ParticleControlPanel.ts`, `BoundsNode.ts` |
+| View | `view/ElectricFieldOfDreamsScreenView.ts`, `ParticleNode.ts`, `FieldGridNode.ts` (arrow lattice), `ExternalFieldControlPanel.ts`, `ParticleControlPanel.ts`, `BoundsNode.ts`, `ElectricFieldOfDreamsScreenSummaryContent.ts` |
 | Colors / strings | `ElectricFieldOfDreamsColors.ts`, `src/i18n/StringManager.ts` |
 | Preferences / query params | `src/preferences/` (`fieldLatticeWidth` query param) |
 
@@ -37,15 +39,6 @@ The box is a `SYSTEM_WIDTH × SYSTEM_HEIGHT` (300×300) region at `(SYSTEM_MIN_X
 - **Six laws per slice, in the original order** (`applyLaws`): (1) reset acceleration, (2) bounce off the four walls (N→E→W→S), (3) uniform external field, (4) Coulomb inter-particle force, (5) velocity integration capped at `MAX_VELOCITY` (100), (6) position integration. Plain **explicit Euler**.
 - Two different K constants: `COULOMB_K` (100000) drives inter-particle forces; `FIELD_CALC_K` (120000) is used **only** for the arrow-grid field visualization.
 
-## Conventions & deliberate deviations
-
-Several quirks are carried over **verbatim** from the PhET source — keep them unless porting fidelity changes:
-
-- **Dragged particles** are excluded from integration (the original detached them) but still act as Coulomb sources on the others.
-- **East-wall bounce** applies `vx = -|vx| - inset` — an intentional asymmetry from `FourBoundsPropagator`.
-- `coulombForce` uses `direction = source − target` combined with a **negative** magnitude (`-COULOMB_K·q₁q₂ / r³`), so like charges repel / opposite attract; non-finite results are guarded to a zero vector.
-- Object pools from the Backbone original are dropped — axon change notification via immutable vectors replaces them.
-
 ## Accessibility
 
 Follows the shared [OpenPhysics accessibility convention](https://github.com/OpenPhysics/Baton/blob/main/ACCESSIBILITY.md).
@@ -65,24 +58,31 @@ Fleet-standard Vitest layout:
 
 | Path | Purpose |
 |---|---|
-| `vitest.config.ts` | Test environment + `setupFiles` when present; `execArgv: ["--expose-gc"]` with memory-leak suite |
-| `tests/setup.ts` | Canvas / AudioContext mocks + `init({ name: "…" })` before SceneryStack imports (when required) |
+| `vitest.config.ts` | `happy-dom` environment, `setupFiles`, `execArgv: ["--expose-gc"]` |
+| `tests/setup.ts` | Canvas / AudioContext mocks + `init({ name: "…" })` before SceneryStack imports |
 | `tests/**/*.test.ts` | Model/physics unit tests — mirror `src/` under `tests/` |
 | `tests/memory-leak.test.ts` | WeakRef + `forceGC` dispose regression (fleet pattern) |
 
-- Put unit tests only under root `tests/` (never co-locate or use `__tests__/`).
-- Run `npm test`. CI runs the suite when a `test` script is present.
-- Expand `memory-leak.test.ts` for components that add/remove nodes or link Properties at runtime (see OpticsLab).
+Actual specs:
+
+- `tests/electric-field-of-dreams/model/ElectricFieldOfDreamsModel.test.ts`
+- `tests/memory-leak.test.ts`
+
+Run `npm test`. CI runs the suite when a `test` script is present.
 
 ## Commands
 
 ```bash
 npm run lint && npm run check && npm run build
+npm test
 ```
 
-No unit-test suite — the build/lint/check gate plus manual run substitute for tests here.
+## Conventions & deliberate deviations
 
-## Development notes
+Several quirks are carried over **verbatim** from the PhET source — keep them unless porting fidelity changes:
 
-- **Pure client-side** — no backend or external services.
+- **Dragged particles** are excluded from integration (the original detached them) but still act as Coulomb sources on the others.
+- **East-wall bounce** applies `vx = -|vx| - inset` — an intentional asymmetry from `FourBoundsPropagator`.
+- `coulombForce` uses `direction = source − target` combined with a **negative** magnitude (`-COULOMB_K·q₁q₂ / r³`), so like charges repel / opposite attract; non-finite results are guarded to a zero vector.
+- Object pools from the Backbone original are dropped — axon change notification via immutable vectors replaces them.
 - Field arrows are recomputed from `getFieldAt(x, y)` (charges' field + external field) over a `fieldLatticeWidth²` grid; raising the density slider increases per-frame sampling cost.
