@@ -54,6 +54,11 @@ current-details: charge count + play state) via the `screenSummaryContent` super
 orders the PDOM through a wrapper `Node`. A11y strings live under the top-level `a11y` key in each
 locale JSON, via `StringManager.getA11yStrings()`.
 
+## Compliance carve-outs
+
+- **Nested constants:** screen-scoped `*Constants.ts` under `src/electric-field-of-dreams/model/` (PhET port layout).
+- **Hardcoded colors:** `rgba(0,0,0,0.4)` knob stroke in `ExternalFieldControlPanel.ts` — translucent decorative border, not a profile color.
+
 ## Testing
 
 Fleet-standard Vitest layout:
