@@ -109,12 +109,15 @@ export default class ParticleControlPanel extends Panel {
       ],
     });
 
+    const a11y = StringManager.getInstance().getA11yStrings();
     super(content, {
       fill: ElectricFieldOfDreamsColors.panelFillProperty,
       stroke: ElectricFieldOfDreamsColors.panelStrokeProperty,
       cornerRadius: PANEL_CORNER_RADIUS,
       xMargin: PANEL_X_MARGIN,
       yMargin: PANEL_Y_MARGIN,
+      accessibleName: a11y.controls.particlePanelStringProperty,
+      accessibleHelpText: a11y.controls.particlePanelHelpStringProperty,
     });
 
     // Disable Remove when there are no particles to remove.

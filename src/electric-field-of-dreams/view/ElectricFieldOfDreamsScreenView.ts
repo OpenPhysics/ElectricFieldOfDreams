@@ -108,11 +108,17 @@ export class ElectricFieldOfDreamsScreenView extends ScreenView {
     model.particles.elementRemovedEmitter.addListener(removeParticleNode);
 
     // ── Bottom play/step controls ────────────────────────────────────────────
-    const playPauseButton = new PlayPauseButton(model.timer.isPlayingProperty, { radius: 22 });
+    const a11y = StringManager.getInstance().getA11yStrings();
+    const playPauseButton = new PlayPauseButton(model.timer.isPlayingProperty, {
+      radius: 22,
+      startPlayingAccessibleName: a11y.controls.playPauseStartStringProperty,
+      endPlayingAccessibleName: a11y.controls.playPauseEndStringProperty,
+    });
     const stepForwardButton = new StepForwardButton({
       radius: 18,
       enabledProperty: DerivedProperty.not(model.timer.isPlayingProperty),
       listener: () => model.stepOnce(),
+      accessibleName: a11y.controls.stepForwardStringProperty,
     });
     const playbackControls = new HBox({
       spacing: 16,
@@ -129,6 +135,7 @@ export class ElectricFieldOfDreamsScreenView extends ScreenView {
       right: layoutBounds.maxX - MARGIN,
       bottom: layoutBounds.maxY - MARGIN,
       tandem: providedOptions.tandem.createTandem("resetAllButton"),
+      accessibleName: a11y.controls.resetAllStringProperty,
     });
 
     // ── Positioning ──────────────────────────────────────────────────────────
@@ -173,6 +180,7 @@ export class ElectricFieldOfDreamsScreenView extends ScreenView {
 
   private static createFieldDensityPanel(model: ElectricFieldOfDreamsModel): Panel {
     const strings = StringManager.getInstance().getFieldDensityStrings();
+    const a11y = StringManager.getInstance().getA11yStrings();
     const font = new PhetFont(13);
     const control = new NumberControl(
       strings.titleStringProperty,
@@ -183,6 +191,8 @@ export class ElectricFieldOfDreamsScreenView extends ScreenView {
         numberDisplayOptions: { textOptions: { font }, decimalPlaces: 0 },
         sliderOptions: { trackSize: new Dimension2(120, 3), constrainValue: (value: number) => Math.round(value) },
         delta: 1,
+        accessibleName: a11y.controls.fieldDensityStringProperty,
+        accessibleHelpText: a11y.controls.fieldDensityHelpStringProperty,
       },
     );
     return new Panel(control, {

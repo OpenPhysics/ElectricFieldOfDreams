@@ -33,8 +33,16 @@
       "positiveCharge": "Carga positiva",
       "negativeCharge": "Carga negativa",
       "particleHelp": "Arrastra para mover esta carga por la región del campo.",
+      "particlePanel": "Controles de partículas",
+      "particlePanelHelp": "Elige la carga y la masa, luego añade o quita una carga.",
       "externalField": "Dirección y magnitud del campo externo",
-      "externalFieldHelp": "Arrastra dentro del panel para ajustar el campo externo uniforme."
+      "externalFieldHelp": "Arrastra dentro del panel para ajustar el campo externo uniforme.",
+      "fieldDensity": "Densidad del campo",
+      "fieldDensityHelp": "Ajusta cuántas flechas de campo se muestran.",
+      "playPauseStart": "Reproducir",
+      "playPauseEnd": "Pausa",
+      "stepForward": "Avanzar un paso",
+      "resetAll": "Restablecer todo"
     }
   },
   "preferences": {

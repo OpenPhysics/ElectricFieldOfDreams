@@ -33,8 +33,16 @@
       "positiveCharge": "Positive charge",
       "negativeCharge": "Negative charge",
       "particleHelp": "Drag to move this charge around the field region.",
+      "particlePanel": "Particle controls",
+      "particlePanelHelp": "Choose charge and mass, then add or remove a charge.",
       "externalField": "External field direction and magnitude",
-      "externalFieldHelp": "Drag within the pad to set the uniform external field."
+      "externalFieldHelp": "Drag within the pad to set the uniform external field.",
+      "fieldDensity": "Field density",
+      "fieldDensityHelp": "Adjust how many field arrows are shown.",
+      "playPauseStart": "Play",
+      "playPauseEnd": "Pause",
+      "stepForward": "Step forward",
+      "resetAll": "Reset All"
     }
   },
   "preferences": {
