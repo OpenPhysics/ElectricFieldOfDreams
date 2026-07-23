@@ -32,6 +32,12 @@
     "controls": {
       "positiveCharge": "Carga positiva",
       "negativeCharge": "Carga negativa",
+      "chargeSelector": "Signo de la carga",
+      "massSelector": "Masa",
+      "lightMass": "Masa ligera",
+      "heavyMass": "Masa pesada",
+      "addCharge": "Añadir carga",
+      "removeCharge": "Quitar carga",
       "particleHelp": "Arrastra para mover esta carga por la región del campo.",
       "particlePanel": "Controles de partículas",
       "particlePanelHelp": "Elige la carga y la masa, luego añade o quita una carga.",
