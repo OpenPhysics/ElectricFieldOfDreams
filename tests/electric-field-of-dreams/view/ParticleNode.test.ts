@@ -25,13 +25,13 @@ describe("ParticleNode disposal", () => {
     const mvt = ModelViewTransform2.createSinglePointScaleMapping(model.center, new Vector2(0, 0), 1);
 
     const particle = model.addParticle(1, 1);
-    const baseline = particle.positionProperty.getListenerCount();
+    expect(particle.positionProperty.hasListeners()).toBe(false);
 
     const node = new ParticleNode(particle, model, mvt);
-    expect(particle.positionProperty.getListenerCount()).toBe(baseline + 1);
+    expect(particle.positionProperty.hasListeners()).toBe(true);
 
     node.dispose();
-    expect(particle.positionProperty.getListenerCount()).toBe(baseline);
+    expect(particle.positionProperty.hasListeners()).toBe(false);
   });
 
   it("does not accumulate listeners across repeated add/remove cycles", () => {
@@ -42,7 +42,7 @@ describe("ParticleNode disposal", () => {
       const particle = model.addParticle(i % 2 === 0 ? 1 : -1, 1);
       const node = new ParticleNode(particle, model, mvt);
       node.dispose();
-      expect(particle.positionProperty.getListenerCount()).toBe(0);
+      expect(particle.positionProperty.hasListeners()).toBe(false);
       model.removeParticle();
     }
   });
