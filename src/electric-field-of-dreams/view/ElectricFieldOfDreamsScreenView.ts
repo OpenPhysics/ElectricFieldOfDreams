@@ -9,6 +9,7 @@
 
 import { DerivedProperty } from "scenerystack/axon";
 import { Dimension2, Vector2 } from "scenerystack/dot";
+import { type EmptySelfOptions, optionize } from "scenerystack/phet-core";
 import { ModelViewTransform2 } from "scenerystack/phetcommon";
 import { HBox, Node } from "scenerystack/scenery";
 import { NumberControl, PhetFont, PlayPauseButton, ResetAllButton, StepForwardButton } from "scenerystack/scenery-phet";
@@ -40,10 +41,13 @@ export class ElectricFieldOfDreamsScreenView extends ScreenView {
   private readonly fieldGridNode: FieldGridNode;
 
   public constructor(model: ElectricFieldOfDreamsModel, providedOptions: ElectricFieldOfDreamsScreenViewOptions) {
-    super({
-      ...providedOptions,
-      screenSummaryContent: new ElectricFieldOfDreamsScreenSummaryContent(model),
-    });
+    const options = optionize<ElectricFieldOfDreamsScreenViewOptions, EmptySelfOptions, ScreenViewOptions>()(
+      {
+        screenSummaryContent: new ElectricFieldOfDreamsScreenSummaryContent(model),
+      },
+      providedOptions,
+    );
+    super(options);
 
     const layoutBounds = this.layoutBounds;
 

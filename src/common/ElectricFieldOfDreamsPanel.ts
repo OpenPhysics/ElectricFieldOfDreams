@@ -25,21 +25,26 @@
  *   const panel = new ElectricFieldOfDreamsPanel(content, { fill: "transparent" });
  */
 
+import { type EmptySelfOptions, optionize } from "scenerystack/phet-core";
 import type { Node } from "scenerystack/scenery";
-import type { PanelOptions } from "scenerystack/sun";
-import { Panel } from "scenerystack/sun";
+import { Panel, type PanelOptions } from "scenerystack/sun";
 import ElectricFieldOfDreamsColors from "../ElectricFieldOfDreamsColors.js";
 import { PANEL_CORNER_RADIUS } from "../ElectricFieldOfDreamsConstants.js";
 
+export type ElectricFieldOfDreamsPanelOptions = PanelOptions;
+
 export class ElectricFieldOfDreamsPanel extends Panel {
-  public constructor(content: Node, providedOptions?: PanelOptions) {
-    super(content, {
-      fill: ElectricFieldOfDreamsColors.panelBackgroundColorProperty,
-      stroke: ElectricFieldOfDreamsColors.panelBorderColorProperty,
-      cornerRadius: PANEL_CORNER_RADIUS,
-      xMargin: 12,
-      yMargin: 10,
-      ...providedOptions,
-    });
+  public constructor(content: Node, providedOptions?: ElectricFieldOfDreamsPanelOptions) {
+    const options = optionize<ElectricFieldOfDreamsPanelOptions, EmptySelfOptions, PanelOptions>()(
+      {
+        fill: ElectricFieldOfDreamsColors.panelBackgroundColorProperty,
+        stroke: ElectricFieldOfDreamsColors.panelBorderColorProperty,
+        cornerRadius: PANEL_CORNER_RADIUS,
+        xMargin: 12,
+        yMargin: 10,
+      },
+      providedOptions,
+    );
+    super(content, options);
   }
 }
