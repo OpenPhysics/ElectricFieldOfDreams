@@ -8,7 +8,7 @@
 
 import { Vector2 } from "scenerystack/dot";
 import type { ModelViewTransform2 } from "scenerystack/phetcommon";
-import { Circle, DragListener, KeyboardDragListener, Node, Text } from "scenerystack/scenery";
+import { Circle, Node, RichDragListener, Text } from "scenerystack/scenery";
 import { PhetFont } from "scenerystack/scenery-phet";
 import ElectricFieldOfDreamsColors from "../../ElectricFieldOfDreamsColors.js";
 import Constants from "../../ElectricFieldOfDreamsConstants.js";
@@ -66,39 +66,28 @@ export default class ParticleNode extends Node {
       particle.isDraggingProperty.value = false;
     };
 
-    const dragListener = new DragListener({
+    // Idiomatic positionProperty + transform; mapPosition clamps to the play area
+    // (closestPointTo) the same way the previous hand-rolled drag did.
+    const dragListener = new RichDragListener({
+      positionProperty: particle.positionProperty,
+      transform: modelViewTransform,
+      mapPosition: (point) => model.bounds.closestPointTo(point),
       start: startDrag,
-      drag: (event) => {
-        const viewPoint = this.globalToParentPoint(event.pointer.point);
-        const modelPoint = modelViewTransform.viewToModelPosition(viewPoint);
-        // Keep the dragged particle inside the play area.
-        particle.setPosition(model.bounds.closestPointTo(modelPoint));
-      },
       end: endDrag,
+      dragListenerOptions: {},
+      keyboardDragListenerOptions: {
+        dragSpeed: 80,
+        shiftDragSpeed: 30,
+      },
     });
     this.addInputListener(dragListener);
-
-    const keyboardDragListener = new KeyboardDragListener({
-      transform: modelViewTransform,
-      dragSpeed: 80,
-      shiftDragSpeed: 30,
-      start: startDrag,
-      drag: (_event, listener) => {
-        const next = particle.positionProperty.value.plusXY(listener.modelDelta.x, listener.modelDelta.y);
-        particle.setPosition(model.bounds.closestPointTo(next));
-      },
-      end: endDrag,
-    });
-    this.addInputListener(keyboardDragListener);
 
     this.disposeEmitter.addListener(() => {
       particle.positionProperty.unlink(updateTranslation);
       // Remove before disposing so hotkeyManager drops its reference to this node (the
-      // KeyboardDragListener's hotkeys otherwise keep the disposed node reachable).
+      // RichDragListener's keyboard hotkeys otherwise keep the disposed node reachable).
       this.removeInputListener(dragListener);
-      this.removeInputListener(keyboardDragListener);
       dragListener.dispose();
-      keyboardDragListener.dispose();
       circle.dispose();
       symbol.dispose();
     });

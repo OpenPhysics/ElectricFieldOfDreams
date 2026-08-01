@@ -11,7 +11,7 @@
 import { Bounds2, clamp, Vector2 } from "scenerystack/dot";
 import { Shape } from "scenerystack/kite";
 import type { ModelViewTransform2 } from "scenerystack/phetcommon";
-import { Circle, DragListener, KeyboardDragListener, Node, Rectangle, Text, VBox } from "scenerystack/scenery";
+import { Circle, Node, Rectangle, RichDragListener, Text, VBox } from "scenerystack/scenery";
 import { ArrowNode, PhetFont } from "scenerystack/scenery-phet";
 import { Panel } from "scenerystack/sun";
 import ElectricFieldOfDreamsColors from "../../ElectricFieldOfDreamsColors.js";
@@ -125,31 +125,29 @@ export default class ExternalFieldControlPanel extends Panel {
       isDragging = false;
     };
     pad.addInputListener(
-      new DragListener({
+      new RichDragListener({
         start: beginFieldDrag,
-        drag: (event) => {
-          const local = padLayer.globalToLocalPoint(event.pointer.point);
-          const tip = new Vector2(clamp(local.x, -HALF, HALF), clamp(local.y, -HALF, HALF));
-          setTip(tip);
-          applyTipToModel(tip);
-        },
         end: endFieldDrag,
-      }),
-    );
-    pad.addInputListener(
-      new KeyboardDragListener({
-        dragSpeed: 120,
-        shiftDragSpeed: 40,
-        start: beginFieldDrag,
-        drag: (_event, listener) => {
-          const tip = new Vector2(
-            clamp(knob.centerX + listener.modelDelta.x, -HALF, HALF),
-            clamp(knob.centerY + listener.modelDelta.y, -HALF, HALF),
-          );
-          setTip(tip);
-          applyTipToModel(tip);
+        dragListenerOptions: {
+          drag: (event) => {
+            const local = padLayer.globalToLocalPoint(event.pointer.point);
+            const tip = new Vector2(clamp(local.x, -HALF, HALF), clamp(local.y, -HALF, HALF));
+            setTip(tip);
+            applyTipToModel(tip);
+          },
         },
-        end: endFieldDrag,
+        keyboardDragListenerOptions: {
+          dragSpeed: 120,
+          shiftDragSpeed: 40,
+          drag: (_event, listener) => {
+            const tip = new Vector2(
+              clamp(knob.centerX + listener.modelDelta.x, -HALF, HALF),
+              clamp(knob.centerY + listener.modelDelta.y, -HALF, HALF),
+            );
+            setTip(tip);
+            applyTipToModel(tip);
+          },
+        },
       }),
     );
 
