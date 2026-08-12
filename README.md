@@ -1,5 +1,7 @@
 # Electric Field of Dreams
 
+[![CI](https://github.com/OpenPhysics/ElectricFieldOfDreams/actions/workflows/ci.yml/badge.svg)](https://github.com/OpenPhysics/ElectricFieldOfDreams/actions/workflows/ci.yml)
+
 A [SceneryStack](https://scenerystack.org/) port of the PhET *Electric Field of Dreams* simulation. Place
 charged particles in a box and observe Coulomb interactions and an adjustable uniform external field.
 
