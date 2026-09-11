@@ -6,7 +6,7 @@
  * "current details" paragraph derived from the model (the number of charges in
  * the field and the play/pause state).
  *
- * Follows the OpenPhysics accessibility convention; see the canonical
+ * Follows the OpenLyceum accessibility convention; see the canonical
  * SceneryStackTemplate/SimScreenSummaryContent.ts.
  */
 import { DerivedProperty } from "scenerystack/axon";

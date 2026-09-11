@@ -1,6 +1,6 @@
 # CLAUDE.md — Electric Field of Dreams
 
-Sim-specific context for AI assistants. General SceneryStack guidance: [OpenPhysics/.github/CLAUDE.md](https://github.com/OpenPhysics/.github/blob/main/CLAUDE.md).
+Sim-specific context for AI assistants. General SceneryStack guidance: [OpenLyceum/.github/CLAUDE.md](https://github.com/OpenLyceum/.github/blob/main/CLAUDE.md).
 
 ## Project
 
@@ -41,7 +41,7 @@ The box is a `SYSTEM_WIDTH × SYSTEM_HEIGHT` (300×300) region at `(SYSTEM_MIN_X
 
 ## Accessibility
 
-Follows the shared [OpenPhysics accessibility convention](https://github.com/OpenPhysics/Baton/blob/main/ACCESSIBILITY.md).
+Follows the shared [OpenLyceum accessibility convention](https://github.com/OpenLyceum/Baton/blob/main/ACCESSIBILITY.md).
 `ElectricFieldOfDreamsScreenView` registers `ElectricFieldOfDreamsScreenSummaryContent` (live
 current-details: charge count + play state) via the `screenSummaryContent` super-option, and
 orders the PDOM through a wrapper `Node`. A11y strings live under the top-level `a11y` key in each
